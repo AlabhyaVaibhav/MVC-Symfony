@@ -1,6 +1,3 @@
 #index:
 #    path: /
 #    controller: App\Controller\ArticleController::homepage
-#admin:
-#    path: /admin
-#    controller: App\Controller\AdminController::adminlogin
