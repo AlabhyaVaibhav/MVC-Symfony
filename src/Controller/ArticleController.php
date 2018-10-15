@@ -12,7 +12,9 @@ namespace App\Controller;
 use App\Entity\NewUser;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Entity;
 
 class ArticleController extends AbstractController
 {
@@ -39,8 +41,36 @@ class ArticleController extends AbstractController
     /**
      * @Route("/newuser/request")
      */
-
     public function requesthomepage(){
-        return new Response("");
+        return $this->render(
+            'article/reqform.html.twig'
+        );
+    }
+
+    /**
+     * @Route("/ajax/NewUserRequest")
+     */
+    public function newUserRequestAjax(Request $request){
+
+        $response = "Recevied request";
+      $response = $this->forward('App\Controller\NewUserController::sendDataToDB', array(
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'team' => $request->get('team'),
+        'me' => $request->get('me'),
+        ));
+        return new Response($response);
+    }
+
+    /**
+     * @Route("test")
+     * @param Request $request
+     * @return Response
+     */
+    public function testNetowrk(Request $request){
+        $name = json_encode("Default");
+//        $name= $request->get('name');
+//        echo $name;
+        return new Response($name);
     }
 }

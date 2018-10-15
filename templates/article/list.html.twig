@@ -1,0 +1,20 @@
+<table>
+    <thead>
+    <th> id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>team</th>
+    </thead>
+    <tbody>
+         {% for i in 0..items|length - 1 %}
+            <tr>
+            {% for user in items %}
+                <td>{{ i }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email}}</td>
+                <td>{{ user.team }}</td>
+            {% endfor %}
+            </tr>
+         {% endfor %}
+    </tbody>
+</table>

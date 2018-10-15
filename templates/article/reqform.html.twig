@@ -1,0 +1,35 @@
+<form>
+    Name : <input type="text" id="name"><br/>
+    Email : <input type="email" id="email"><br/>
+    Team : <input type="text" id="team"><br/>
+    Manager Email : <input type="email" id="me"><br/>
+    <button type="submit" onclick="sendData()">Submit</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script>
+function sendData() {
+    alert(this);
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const me = document.getElementById('me').value;
+    const team = document.getElementById('team').value;
+
+    $.ajax({
+        url:'/ajax/NewUserRequest',
+        type:"get",
+        dataType:"json",
+        data:{
+            name: name,
+            email:email,
+            team:team,
+            me:me
+        },
+        success:function(response){
+            console.log(response);
+        }
+    });
+}
+
+</script>
